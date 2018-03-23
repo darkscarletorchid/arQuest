@@ -4,17 +4,42 @@
     <title>TEST </title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Faframe-ar.js?1521577377769"></script>
+<!--     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> -->
 <!--     <script src=”https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script> -->
+    <script>
+AFRAME.registerComponent('registerevents', {
+		init: function () {
+			var marker = this.el;
+
+    
+			// Make the element emit events when found and when lost.
+			//marker.setAttribute('emitevents', 'true');
+
+			marker.addEventListener('markerFound', function(e) {
+        var markerId = marker.id;
+        alert('markerFound ' + markerId);
+				// TODO: send request with markerId to the server
+        
+			});
+
+			marker.addEventListener('markerLost', function() {
+				// var markerId = marker.id;
+				// console.log('markerLost', markerId);
+				// alert('markerLost', markerId);
+
+			});
+    }
+	});
+</script>
+    
   </head>
   <body style="margin : 0px; overflow: hidden;">
     <header class="header">
       <div class="message">USERNAME, YOU FOUND <span class="numbers">5</span> OBJECTS OUT OF <span class="numbers">62</span>. KEEP LOOKING!</div></header>
-  <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
-    
-    
-    <a-marker preset="hiro" id="hiro-marker">
-        <a-entity 
+  <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; detectionMode: color_and_matrix; matrixCodeType: 3x3;">
+    <a-marker preset="custom" url="https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fpattern-marker.patt?1521747484279" id="A-black" registerevents>
+        <a-entity  
             id="model"
             position="0 0 0"
             scale="1 1 1"
@@ -24,14 +49,40 @@
           <a-animation attribute="rotation" to="0 360 0" dur="5000" easing="linear" repeat="indefinite"></a-animation>
         </a-entity>
       </a-marker> 
-      <a-entity camera></a-entity>
-  </a-scene>
+
+    <a-marker preset="custom" url="https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2FA1.patt?1521746517992" id="A-coloured" registerevents>
+        <a-entity  
+            id="model"
+            position="0 0 0"
+            scale="1 1 1"
+            rotation="0 180 0"
+            obj-model="obj: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmodel.obj?1521056084990); 
+            mtl: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmaterials.mtl?1521056082181)">
+          <a-animation attribute="rotation" to="0 360 0" dur="5000" easing="linear" repeat="indefinite"></a-animation>
+        </a-entity>
+      </a-marker> 
     
-    <script>
-    artoolkitMarker.addEventListener('markerFound', function(event){
-              alert("sdas");
-	})
-    </script>  
+     <a-marker preset="kanji" id="kanji-marker"  registerevents>
+        <a-entity 
+            position="0 0 0"
+            scale="1 1 1"
+            rotation="0 180 0"
+            obj-model="obj: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmodel.obj?1521056084990); 
+            mtl: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmaterials.mtl?1521056082181)">
+          <a-animation attribute="rotation" to="0 360 0" dur="5000" easing="linear" repeat="indefinite"></a-animation>
+        </a-entity>
+      </a-marker> 
+    <a-marker type="barcode" value="5" id="marker-barcode-5" registerevents>
+      <a-entity 
+            position="0 0 0"
+            scale="1 1 1"
+            rotation="0 180 0"
+            obj-model="obj: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmodel.obj?1521056084990); 
+            mtl: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmaterials.mtl?1521056082181)">
+          <a-animation attribute="rotation" to="0 360 0" dur="5000" easing="linear" repeat="indefinite"></a-animation>
+  	</a-marker>
+      <a-entity camera></a-entity>
+  </a-scene> 
 </body>
 </html>
 
