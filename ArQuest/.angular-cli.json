@@ -22,7 +22,7 @@
         "styles.css"
       ],
       "scripts": [
-        "scripts/aframe-ar.js"
+        "assets/aframe-ar.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
