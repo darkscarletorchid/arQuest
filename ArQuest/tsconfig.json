@@ -2,7 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "allowJs": true,
+    "allowJs": false,
+    "checkJs": false,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
