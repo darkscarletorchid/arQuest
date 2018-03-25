@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CdkTableModule } from '@angular/cdk/table';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,6 +50,11 @@ import { CameraArComponent } from './camera-ar/camera-ar.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { HeaderComponent } from './camera-ar/header/header.component';
 import { RegisterComponent } from './register/register.component';
+
+//Services
+import {ProgressService} from './services/progress.service';
+import {ItemService} from './services/item.service';
+import {UserService} from './services/user.service';
 
 
 const appRoutes: Routes = [
@@ -108,6 +114,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
     //material design modules
     MatNativeDateModule,
@@ -143,9 +150,14 @@ const appRoutes: Routes = [
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
+
   ],
-  providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+  providers: [
+    ProgressService,
+    ItemService,
+    UserService
+  ],
+  bootstrap: [ AppComponent ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
