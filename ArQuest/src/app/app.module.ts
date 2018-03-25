@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//Material Design Components
+// Material Design Components
 import 'hammerjs';
 import {
   MatAutocompleteModule,
@@ -43,7 +43,7 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 
-//Custom Components
+// Custom Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CameraArComponent } from './camera-ar/camera-ar.component';
@@ -51,7 +51,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { HeaderComponent } from './camera-ar/header/header.component';
 import { RegisterComponent } from './register/register.component';
 
-//Services
+// Services
 import {ProgressService} from './services/progress.service';
 import {ItemService} from './services/item.service';
 import {UserService} from './services/user.service';

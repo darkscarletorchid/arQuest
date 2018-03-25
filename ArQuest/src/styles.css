@@ -1,2 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/purple-green.css";
+.main {
+  margin: 0;
+  overflow:hidden;
+  background: #303030;
+  color: white;
+}
+
+
+.toolbar-custom {
+  position: fixed !important;
+  top:0 !important;
+  left: 0!important;
+}

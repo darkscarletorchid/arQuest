@@ -12,6 +12,7 @@ import {UserService} from '../../services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
+  isAuthenticated: boolean;
   itemsFound: Item[];
   actualCount: number;
   totalCount: number;
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
     };
     this.totalCount = 10;
     this.actualCount = 0;
+    this.isAuthenticated = true;
   }
 
   ngOnInit() {
