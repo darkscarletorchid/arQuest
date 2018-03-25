@@ -22,7 +22,7 @@
         "styles.css"
       ],
       "scripts": [
-        "scripts/aframe-ar.js"
+        "assets/scripts/registerEvents.component.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
