@@ -8,6 +8,8 @@ AFRAME.registerComponent('registerevents', {
 
     marker.addEventListener('markerFound', function(e) {
       var markerId = marker.id;
+
+
       alert('markerFound ' + markerId);
       // TODO: send request with markerId to the server
 
