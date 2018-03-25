@@ -1,0 +1,10 @@
+.register-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.register-form > * {
+    margin: 2% 10% 0% 10%;
+}
+  
