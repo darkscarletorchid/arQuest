@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ProgressService} from '../../services/progress.service';
-import {Item} from '../../models/item';
+import {Item, UserItem} from '../../models/item';
 import {ItemService} from '../../services/item.service';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   actualCount: number;
   totalCount: number;
   user: User;
+  userItem: UserItem;
   constructor( private progressService: ProgressService,
                private itemService: ItemService,
                private userService: UserService) {
@@ -38,5 +39,17 @@ export class HeaderComponent implements OnInit {
   getProgressByUser(id: number): void {
     this.progressService.getProgressByUser(id)
       .subscribe(items => this.itemsFound = items, error => {});
+  }
+
+  @HostListener('markerFound', ['$event'])
+  onMarkerFound(e) {
+    this.userItem.itemId = e.detail.markerId;
+    this.userItem.userId = this.user.id;
+    this.progressService.addToProgress(this.userItem)
+      .subscribe(result => this.progressService.getProgressByUser(this.user.id)
+        .subscribe(items => {
+          this.itemsFound = items;
+          this.actualCount = items.length;
+        }));
   }
 }
