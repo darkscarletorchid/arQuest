@@ -45,11 +45,11 @@ import {
 
 // Custom Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { CameraArComponent } from './camera-ar/camera-ar.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
-import { HeaderComponent } from './camera-ar/header/header.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { CameraArComponent } from './components/camera-ar/camera-ar.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { HeaderComponent } from './components/header/header.component';
+import { RegisterComponent } from './components/register/register.component';
 
 // Services
 import {ProgressService} from './services/progress.service';
