@@ -2,7 +2,6 @@
 @import "~@angular/material/prebuilt-themes/purple-green.css";
 .main {
   margin: 0;
-  overflow:hidden;
   background: #303030;
   color: white;
 }
