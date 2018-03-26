@@ -1,6 +1,6 @@
 <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; detectionMode: color_and_matrix; matrixCodeType: 3x3;">
 
-  <a-marker-camera preset="hiro" id="hiro" registerevents>
+  <a-marker preset="custom" url="https://darkscarletorchid.github.io/arQuest/assets/markers/patterns/M.patt" id="letter-m" registerevents>
     <a-entity
       position="0 0 0"
       scale="1 1 1"
@@ -9,18 +9,7 @@
             mtl: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmaterials.mtl?1521056082181)">
       <a-animation attribute="rotation" to="0 360 0" dur="5000" easing="linear" repeat="indefinite"></a-animation>
     </a-entity>
-  </a-marker-camera>
-
-  <a-marker-camera preset="custom" url="https://darkscarletorchid.github.io/arQuest/assets/markers/patterns/M.patt" id="letter-m" registerevents>
-    <a-entity
-      position="0 0 0"
-      scale="1 1 1"
-      rotation="0 180 0"
-      obj-model="obj: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmodel.obj?1521056084990);
-            mtl: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmaterials.mtl?1521056082181)">
-      <a-animation attribute="rotation" to="0 360 0" dur="5000" easing="linear" repeat="indefinite"></a-animation>
-    </a-entity>
-    </a-marker-camera>
+    </a-marker>
 
   <!--<a-marker preset="custom" url="assets/markers/patterns/A1.patt" id="letter-a1" registerevents>-->
     <!--<a-entity-->
@@ -133,6 +122,6 @@
     <!--</a-entity>-->
   <!--</a-marker>-->
 
-  <!--<a-entity camera></a-entity>-->
+  <a-entity camera></a-entity>
 
 </a-scene>
