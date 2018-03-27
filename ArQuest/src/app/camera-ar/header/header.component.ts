@@ -20,10 +20,10 @@ export class HeaderComponent implements OnInit {
                private itemService: ItemService,
                private userService: UserService) {
     // TODO remove stub
-    this.user = {
+    this.user = new User({
       id: 1,
       username: 'Nastia'
-    };
+    });
     this.totalCount = 10;
     this.actualCount = 0;
   }
