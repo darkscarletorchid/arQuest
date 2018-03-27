@@ -1,3 +1,4 @@
+
 AFRAME.registerComponent('registerevents', {
   init: function () {
     var marker = this.el;
@@ -9,9 +10,8 @@ AFRAME.registerComponent('registerevents', {
     marker.addEventListener('markerFound', function(e) {
       var markerId = marker.id;
 
-
+      window.dispatchEvent(new CustomEvent("markerFound"));
       alert('markerFound ' + markerId);
-      // TODO: send request with markerId to the server
 
     });
 
