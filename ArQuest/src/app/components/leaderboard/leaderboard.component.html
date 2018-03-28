@@ -1,32 +1,24 @@
 <app-header></app-header>
-<!--<div class="example-container mat-elevation-z8">-->
-  <!--<mat-table #table [dataSource]="this.userList" matSort>-->
 
-    <!--&lt;!&ndash; Position Column &ndash;&gt;-->
-    <!--<ng-container matColumnDef="position">-->
-      <!--<mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>-->
-      <!--<mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>-->
-    <!--</ng-container>-->
+<div class="example-container">
+    <h1 class="txt-cenetr">Leaderboard</h1>
+    <h3>Last updated: {{lastUpdated | date:'short'}}</h3>
 
-    <!--&lt;!&ndash; Name Column &ndash;&gt;-->
-    <!--<ng-container matColumnDef="userName">-->
-      <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>-->
-      <!--<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>-->
-    <!--</ng-container>-->
-
-    <!--&lt;!&ndash; Weight Column &ndash;&gt;-->
-    <!--<ng-container matColumnDef="Progress">-->
-      <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Weight </mat-header-cell>-->
-      <!--<mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>-->
-    <!--</ng-container>-->
-
-    <!--&lt;!&ndash; Symbol Column &ndash;&gt;-->
-    <!--<ng-container matColumnDef="symbol">-->
-      <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>-->
-      <!--<mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>-->
-    <!--</ng-container>-->
-
-    <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-    <!--<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
-  <!--</mat-table>-->
-<!--</div>-->
+    <mat-table #table [dataSource]="leaders" class="mat-elevation-z8">
+         
+      <!-- Name Column -->
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+      </ng-container>
+  
+      <!-- Found Items Column -->
+      <ng-container matColumnDef="count">
+        <mat-header-cell *matHeaderCellDef> Items found </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.count}} </mat-cell>
+      </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

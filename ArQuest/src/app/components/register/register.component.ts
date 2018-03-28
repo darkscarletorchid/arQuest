@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
-import { UserService } from '../services/user.service'
+import { AuthService } from '../../services/auth.service'
 
-import { User } from '../models/user'
+import { User } from '../../models/user'
 
 @Component({
   selector: 'app-register',
@@ -13,58 +13,29 @@ import { User } from '../models/user'
 })
 export class RegisterComponent implements OnInit {
   model: User = new User();
+  loading: boolean = false;
   //snackBar: MatSnackBar = {};
 
-  constructor(private userService: UserService, private router: Router, public snackBar : MatSnackBar) { }
+  constructor(private authService: AuthService, private router: Router, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.snackBar.open("Registration completed", "", {duration: 3000});
-    //this.register();
+  onSubmit() {   
+    this.register();
   }
 
   private register() {
-    this.userService.create(this.model).subscribe(
+    this.loading = true;
+    this.authService.register(this.model).subscribe(
       data => {
-        this.snackBar.open("Registration completed");
-        this.router.navigate(['/login']);
+        this.snackBar.open("Registration completed! The quest will begin soon!", "", { duration: 3000, panelClass: "custom-snackbar" });
+        this.router.navigate(["/quest"]);
       }, 
       error => {
-        this.snackBar.open("Registration failed: " + error);
+        this.snackBar.open(error.error, "OK", { panelClass: "custom-snackbar" });
+        this.loading = false;
       });
   }
-  /*
-  
-import { AlertService, UserService } from '../_services/index';
-
-@Component({
-    moduleId: module.id,
-    templateUrl: 'register.component.html'
-})
-
-export class RegisterComponent {
-    model: any = {};
-    loading = false;
-
-    constructor(
-        private router: Router,
-        private userService: UserService,
-        private alertService: AlertService) { }
-
-    register() {
-        this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
-                data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
-    }
-  */
 }
+

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
 import { environment } from '../../environments/environment';
+import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
@@ -12,24 +13,26 @@ export class AuthService {
 
   private apiPath: string = environment.apiEndpoint + '/users/authenticate';
 
-  login(email: string, password: string) {
-    return this.http.post<any>(this.apiPath, {email: email, password: password})
+  register(user: User) {
+    return this.http.post<any>(this.apiPath, {username: user.username, email: user.email})
       .map(data => {
         if (data && data.token) {
-          localStorage.setItem('currentUser', JSON.stringify(data));
-          localStorage.setItem('isAuth', '1');
+          localStorage.setItem('token', data);
+          localStorage.setItem('username', user.username);
+          localStorage.setItem('email', user.email);
         }
         return data;
       });
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    localStorage.setItem('isAuth', '0');
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
   }
 
   isAuth() : boolean {
-    let isAuth = localStorage.getItem('isAuth');
-    return isAuth === '1';
+    //if token exists in local storage
+    return Boolean(localStorage.getItem('token'));
   }
 }

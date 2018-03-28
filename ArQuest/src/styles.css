@@ -5,3 +5,9 @@
   background: #303030;
   color: white;
 }
+
+.custom-snackbar {
+  color: white;
+  background-color: #2F3030;
+  text-align: center;
+}

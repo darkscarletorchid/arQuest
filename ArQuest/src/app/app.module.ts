@@ -52,10 +52,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
 
 // Services
-import {ProgressService} from './services/progress.service';
-import {ItemService} from './services/item.service';
-import {UserService} from './services/user.service';
-
+import { AuthService } from './services/auth.service';
+import { ProgressService } from './services/progress.service';
+import { ItemService } from './services/item.service';
+import { UserService } from './services/user.service';
+import { LeaderboardService } from './services/leaderboard.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -153,9 +154,11 @@ const appRoutes: Routes = [
 
   ],
   providers: [
+    AuthService,
     ProgressService,
     ItemService,
-    UserService
+    UserService,
+    LeaderboardService
   ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]

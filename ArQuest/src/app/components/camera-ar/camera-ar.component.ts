@@ -23,10 +23,10 @@ export class CameraArComponent implements OnInit {
 
   ngOnInit() {
     // TODO remove stub
-    this.user = {
+    this.user = new User({
       id: 1,
       username: 'Nastia'
-    };
+    });
     this.totalCount = 10;
     this.actualCount = 0;
     this.userItem = new UserItem();

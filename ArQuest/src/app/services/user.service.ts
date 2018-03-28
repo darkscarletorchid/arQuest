@@ -17,8 +17,4 @@ export class UserService {
   getCurrentUser(): User {
     return this.currentUser;
   }
-
-  create(user: User) {
-    return this.http.post(this.apiPath + 'register', user);
-  }
 }
