@@ -40,7 +40,7 @@ export class CameraArComponent implements OnInit {
   onMarkerFound(target) {
     this.userItem.itemId = target.id;
     this.userItem.userId = this.user.id;
-    this.snackBar.open('New object found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
+    this.snackBar.open(target.id + ' found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
 
     console.log(target.id);
     // this.progressService.addToProgress(this.userItem)
@@ -48,7 +48,7 @@ export class CameraArComponent implements OnInit {
     //     .subscribe(items => {
     //       this.itemsFound = items;
     //       this.actualCount = items.length;
-    this.snackBar.open('New object found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
+    // this.snackBar.open('New object found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
 
     //     }));
   }
