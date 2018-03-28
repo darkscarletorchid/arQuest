@@ -10,7 +10,7 @@ AFRAME.registerComponent('registerevents', {
     marker.addEventListener('markerFound', function(e) {
       var markerId = marker.id;
 
-      window.dispatchEvent(new CustomEvent("markerFound", {detail: { markerId: markerId }}));
+      window.dispatchEvent(new CustomEvent("markerFound"));
       alert('markerFound ' + markerId);
 
     });
