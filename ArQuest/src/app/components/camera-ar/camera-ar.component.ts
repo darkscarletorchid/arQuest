@@ -3,6 +3,7 @@ import {Item, UserItem} from '../../models/item';
 import {ProgressService} from '../../services/progress.service';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-camera-ar',
@@ -19,7 +20,7 @@ export class CameraArComponent implements OnInit {
 
 
 
-  constructor(private progressService: ProgressService, private userService: UserService) { }
+  constructor(private progressService: ProgressService, private userService: UserService, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
     // TODO remove stub
@@ -39,12 +40,16 @@ export class CameraArComponent implements OnInit {
   onMarkerFound(target) {
     this.userItem.itemId = target.id;
     this.userItem.userId = this.user.id;
+    this.snackBar.open('New object found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
+
     console.log(target.id);
     // this.progressService.addToProgress(this.userItem)
     //   .subscribe(result => this.progressService.getProgressByUser(this.user.id)
     //     .subscribe(items => {
     //       this.itemsFound = items;
     //       this.actualCount = items.length;
+    this.snackBar.open('New object found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
+
     //     }));
   }
   getProgressByUser(id: number): void {

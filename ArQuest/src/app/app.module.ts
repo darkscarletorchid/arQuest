@@ -45,7 +45,6 @@ import {
 
 // Custom Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { CameraArComponent } from './components/camera-ar/camera-ar.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -59,7 +58,6 @@ import { UserService } from './services/user.service';
 import { LeaderboardService } from './services/leaderboard.service';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'quest', component: CameraArComponent },
   { path: 'leaderboard', component: LeaderboardComponent },
@@ -68,7 +66,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     CameraArComponent,
     LeaderboardComponent,
     HeaderComponent,
