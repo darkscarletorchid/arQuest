@@ -1,0 +1,1 @@
+AFRAME.registerComponent("registerevents",{init:function(){var e=this.el;e.addEventListener("markerFound",function(e){window.dispatchEvent(new CustomEvent("markerFound"))}),e.addEventListener("markerLost",function(){})}});
