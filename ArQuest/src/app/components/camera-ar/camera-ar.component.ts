@@ -5,6 +5,8 @@ import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
 import {MatSnackBar} from '@angular/material';
 
+
+
 @Component({
   selector: 'app-camera-ar',
   templateUrl: './camera-ar.component.html',
@@ -17,7 +19,7 @@ export class CameraArComponent implements OnInit {
   itemsFound: Item[];
   actualCount: number;
   totalCount: number;
-
+  baseUrl = 'https://darkscarletorchid.github.io/arQuest/';
 
 
   constructor(private progressService: ProgressService, private userService: UserService, public snackBar : MatSnackBar) { }

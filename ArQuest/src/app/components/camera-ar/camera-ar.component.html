@@ -9,20 +9,18 @@
 </svg>
 
 <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam; trackingMethod: best; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
-
-  <a-marker preset="custom" url="https://darkscarletorchid.github.io/arQuest/assets/markers/patterns/A1Black.patt" id="test1-a" registerevents>
-
+  <a-marker preset="custom" url="{{this.baseUrl}} + 'assets/markers/patterns/A1Black.patt'" id="test1-a" registerevents>
     <a-entity
       position="0 0 0"
       scale="1 1 1"
       rotation="0 180 0"
-      obj-model="obj: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmodel.obj?1521056084990);
-            mtl: url(https://cdn.glitch.com/440f72c5-f93c-4860-a34d-5e8cc9bf82d7%2Fmaterials.mtl?1521056082181)">
+      obj-model="obj: url({{this.baseUrl}} + 'assets/models/gold_star.obj');
+            mtl: url({{this.baseUrl}} + 'assets/models/gold_star.mtl)">
       <a-animation attribute="scale" from="1 1 1" to="2 2 2" dur="5000" direction="alternate-reverse" easing="ease-in-out-circ" repeat="indefinite"></a-animation>
     </a-entity>
   </a-marker>
 
-  <a-marker preset="custom" url="https://darkscarletorchid.github.io/arQuest/assets/markers/patterns/A2Black.patt" id="test2-a" registerevents>
+  <a-marker preset="custom" url="{{this.baseUrl}} + 'assets/markers/patterns/A2Black.patt'" id="test2-a" registerevents>
 
     <a-entity
       position="0 0 0"
