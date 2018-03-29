@@ -3,6 +3,6 @@ export class Item {
 }
 
 export class UserItem {
-  userId: number;
+  userToken: string;
   itemId: string;
 }

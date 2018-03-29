@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 export class ItemService {
   constructor(private httpClient: HttpClient) { }
 
+  // TODO check if we really need this service
   public getAll (): Observable<any> {
     return this.httpClient.get('http://');
   }
