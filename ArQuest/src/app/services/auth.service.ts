@@ -13,26 +13,17 @@ export class AuthService {
 
   private apiPath: string = environment.apiEndpoint + '/users/authenticate';
 
-  register(user: User) {
-    return this.http.post<any>(this.apiPath, {username: user.username, email: user.email})
-      .map(data => {
-        if (data && data.token) {
-          localStorage.setItem('token', data);
-          localStorage.setItem('username', user.username);
-          localStorage.setItem('email', user.email);
-        }
-        return data;
-      });
-  }
-
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('email');
+    localStorage.removeItem('currentUser');
   }
 
   isAuth() : boolean {
-    //if token exists in local storage
-    return Boolean(localStorage.getItem('token'));
+    let token = localStorage.getItem('token');    
+    if (token) {
+      return true;
+    }
+
+    return false;
   }
 }
