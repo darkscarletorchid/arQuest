@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 import { User } from '../models/user';
+import { LeaderboardItem } from '../models/leaderboard-item';
 
 @Injectable()
 export class UserService {
@@ -30,6 +31,7 @@ export class UserService {
           user.id = data.id;
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
+
         return data;
       });
   }

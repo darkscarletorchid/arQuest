@@ -20,33 +20,19 @@ export class LeaderboardComponent implements OnInit {
     //stub
     this.leaders = this.getLeaderboard();
 
-    /*
-    work when api will bw provided
-    this.leaderboardService.getTop10().subscribe(
+    this.leaderboardService.getTopUser().subscribe(
       data => {
         this.leaders = data;
       }, 
       error => {
         console.log("error occured");
       });
-     */
 
      this.lastUpdated = new Date(Date.now());
   }
 
   private getLeaderboard() : LeaderboardItem[] {
-    let leaders = [      
-            {username: 'Mary', count: 10},
-            {username: 'john', count: 9},
-            {username: 'harry', count: 9},
-            {username: 'Erast', count: 9},
-            {username: 'Julia', count: 8},
-            {username: 'Karry', count: 8},
-            {username: 'Alex', count: 7},
-            {username: 'Coco', count: 6},
-            {username: 'Denis', count: 5},
-            {username: 'Max', count: 5}
-          ];
-    return leaders;
+    return new Array<LeaderboardItem>();
   }
+    
 }

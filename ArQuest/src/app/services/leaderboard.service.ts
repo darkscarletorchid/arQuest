@@ -11,10 +11,22 @@ export class LeaderboardService {
 
   constructor(private http: HttpClient, ) { }
 
-  private apiPath: string = environment.apiEndpoint + '/leaderboard';
+  private apiPath: string = environment.apiEndpoint + '/user';
 
-  getTop10(): Observable<LeaderboardItem[]> {
-    return this.http.get<LeaderboardItem[]>(this.apiPath);
-  }
+  getTopUser(): Observable<LeaderboardItem[]> {
+    return this.http.get<any>(this.apiPath).map(data => {
+      var leaders =
+        data.map((user, i) => {
+          return {
+            no: i,
+            userName: user.userName,
+            progress: user.progress,
+            itemsFound: user.markers.length
+          }
+        });
+
+      return new Array<LeaderboardItem>(leaders);
+    });
+  };
 
 }
