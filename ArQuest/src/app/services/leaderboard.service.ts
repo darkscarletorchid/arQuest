@@ -18,14 +18,14 @@ export class LeaderboardService {
       var leaders =
         data.map((user, i) => {
           return {
-            no: i,
+            no: i + 1,
             userName: user.userName,
             progress: user.progress,
             itemsFound: user.markers.length
           }
         });
-
-      return new Array<LeaderboardItem>(leaders);
+      console.log(leaders);
+      return leaders;
     });
   };
 

@@ -1,4 +1,7 @@
-import { Component, OnInit , ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import { TimerObservable } from "rxjs/observable/TimerObservable";
+
 // import {MatTableDataSource, MatSort} from '@angular/material';
 import { LeaderboardItem } from '../../models/leaderboard-item'
 import { LeaderboardService } from '../../services/leaderboard.service'
@@ -9,30 +12,34 @@ import { LeaderboardService } from '../../services/leaderboard.service'
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
+  
+  leaders: LeaderboardItem[] = [];
+  interval = 60000 * 5; //5 min
+  displayedColumns = ['no', 'userName', 'itemsFound', 'progress'];
+  lastUpdated: Date;
+  
+  constructor(private leaderboardService: LeaderboardService) { }
 
-  leaders : LeaderboardItem[] = []; 
-  displayedColumns = ['username', 'count'];
-  lastUpdated : Date;
+  ngOnInit() {    
+    this.lastUpdated = new Date();
 
-  constructor(private leaderboardService: LeaderboardService ) { }
+    TimerObservable.create(0, this.interval).subscribe(() => {
+      this.leaderboardService.getTopUser().subscribe(
+        data => {
+          console.log(data);
+          this.leaders = data;
+        },
+        error => {
+          console.log("error occured");
+        })
 
-  ngOnInit() {
-    //stub
-    this.leaders = this.getLeaderboard();
-
-    this.leaderboardService.getTopUser().subscribe(
-      data => {
-        this.leaders = data;
-      }, 
-      error => {
-        console.log("error occured");
+        this.lastUpdated = new Date(Date.now());
       });
 
-     this.lastUpdated = new Date(Date.now());
   }
 
-  private getLeaderboard() : LeaderboardItem[] {
+  private getLeaderboard(): LeaderboardItem[] {
     return new Array<LeaderboardItem>();
   }
-    
+
 }

@@ -12,12 +12,12 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {
-    let isAuth  = this.authService.isAuth;
-    if (isAuth) {
-      this.router.navigate(['/register']);
-    } else {
-      this.router.navigate(['/quest']);
-    }  
-  }
+   ngOnInit() {
+  //   let isAuth  = this.authService.isAuth;
+  //   if (isAuth) {
+  //     this.router.navigate(['/register']);
+  //   } else {
+  //     this.router.navigate(['/quest']);
+  //   }  
+   }
 }
