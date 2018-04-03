@@ -53,7 +53,6 @@ import { RegisterComponent } from './components/register/register.component';
 // Services
 import { AuthService } from './services/auth.service';
 import { ProgressService } from './services/progress.service';
-import { ItemService } from './services/item.service';
 import { UserService } from './services/user.service';
 import { LeaderboardService } from './services/leaderboard.service';
 

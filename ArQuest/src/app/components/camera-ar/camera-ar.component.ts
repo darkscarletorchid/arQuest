@@ -14,7 +14,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class CameraArComponent implements OnInit {
 
-  userToken: string;
+  user: User;
   userItem: UserItem;
   itemsFound: Item[];
   actualCount: number;
@@ -22,20 +22,20 @@ export class CameraArComponent implements OnInit {
   constructor(private progressService: ProgressService, private userService: UserService, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
-     this.userToken = this.userService.getCurrentUserToken();
-     this.progressService.getProgressByUser(this.userToken);
+     this.user = this.userService.getCurrentUser();
+     this.progressService.getProgressByUser(this.user.id);
      this.actualCount = this.itemsFound.length;
 
   }
   @HostListener('markerFound', ['$event.target'])
   onMarkerFound(target) {
     this.userItem.itemId = target.id;
-    this.userItem.userToken = this.userToken;
+    this.userItem.userToken = this.userService.getCurrentUserToken();
     this.snackBar.open(target.id + ' found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
 
     console.log(target.id);
     this.progressService.addToProgress(this.userItem)
-       .subscribe(result => this.progressService.getProgressByUser(this.userToken)
+       .subscribe(result => this.progressService.getProgressByUser(this.user.id)
          .subscribe(items => {
            this.itemsFound = items;
            this.actualCount = items.length;
@@ -43,8 +43,8 @@ export class CameraArComponent implements OnInit {
 
     }));
   }
-  getProgressByUser(token: string): void {
-    this.progressService.getProgressByUser(token)
+  getProgressByUser(id: number): void {
+    this.progressService.getProgressByUser(id)
       .subscribe(items => this.itemsFound = items, error => {});
   }
 }
