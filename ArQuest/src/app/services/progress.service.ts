@@ -19,11 +19,11 @@ export class ProgressService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getProgressByUser (token: string): Observable<UserItem[]> {
-    return this.httpClient.get<UserItem[]>(environment.apiEndpoint + '/markerUser' + token);
+  public getProgressByUser (id: number): Observable<UserItem[]> {
+    return this.httpClient.get<UserItem[]>(environment.apiEndpoint + 'markerUser/' + id);
   }
 
   public addToProgress(userItem: UserItem): Observable<UserItem> {
-    return this.httpClient.post<UserItem>(environment.apiEndpoint + '/markers', userItem, httpOptions);
+    return this.httpClient.post<UserItem>(environment.apiEndpoint + 'markers', userItem, httpOptions);
   }
 }

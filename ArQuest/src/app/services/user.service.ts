@@ -4,17 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 import { User } from '../models/user';
-
+import { UserDto } from '../models/user';
 @Injectable()
 export class UserService {
 
-  currentUserToken: string;
+  currentUser: UserDto;
+
 
   constructor(private http: HttpClient) { }
 
   private apiPath: string = environment.apiEndpoint + '/user';
 
-  getCurrentUserToken(): string {
-    return this.currentUserToken;
+  getCurrentUserToken(): UserDto {
+    return this.currentUser;
   }
 }
