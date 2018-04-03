@@ -19,7 +19,9 @@ export class ProgressService {
   }
 
   public getProgressByUser (id: number): Observable<any> {
-    return this.httpClient.get<any>(environment.apiEndpoint + '/user/' + id);
+    return this.httpClient.get<any>(environment.apiEndpoint + '/user/' + id).map(data => {
+      // TODO to finish var items =
+    });
   }
 
   public addToProgress(userItem: UserItem): Observable<UserItem> {

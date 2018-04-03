@@ -113,7 +113,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
 
-    //material design modules
+    // material design modules
     MatNativeDateModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -152,7 +152,6 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     ProgressService,
-    ItemService,
     UserService,
     LeaderboardService
   ],
