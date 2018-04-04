@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Item, UserItem} from '../models/item';
-import { catchError, map, tap } from 'rxjs/operators';
+import {UserItem} from '../models/item';
 
 import 'rxjs/add/operator/catch';
 import {environment} from '../../environments/environment';
@@ -19,8 +18,10 @@ export class ProgressService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getProgressByUser (id: number): Observable<UserItem[]> {
-    return this.httpClient.get<UserItem[]>(environment.apiEndpoint + 'markerUser/' + id);
+  public getProgressByUser (id: number): Observable<any> {
+    return this.httpClient.get<any>(environment.apiEndpoint + '/user/' + id).map(data => {
+      // TODO to finish var items =
+    });
   }
 
   public addToProgress(userItem: UserItem): Observable<UserItem> {

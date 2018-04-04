@@ -53,7 +53,6 @@ import { RegisterComponent } from './components/register/register.component';
 // Services
 import { AuthService } from './services/auth.service';
 import { ProgressService } from './services/progress.service';
-import { ItemService } from './services/item.service';
 import { UserService } from './services/user.service';
 import { LeaderboardService } from './services/leaderboard.service';
 
@@ -114,7 +113,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
 
-    //material design modules
+    // material design modules
     MatNativeDateModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -153,7 +152,6 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     ProgressService,
-    ItemService,
     UserService,
     LeaderboardService
   ],

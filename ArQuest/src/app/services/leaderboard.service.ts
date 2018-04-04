@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../environments/environment';
-import { LeaderboardItem } from '../models/leaderboard-item'
+import { LeaderboardItem } from '../models/leaderboard-item';
 
 
 @Injectable()
@@ -13,8 +13,19 @@ export class LeaderboardService {
 
   private apiPath: string = environment.apiEndpoint + '/leaderboard';
 
-  getTop10(): Observable<LeaderboardItem[]> {
-    return this.http.get<LeaderboardItem[]>(this.apiPath);
+  getTopUser(): Observable<LeaderboardItem[]> {
+    return this.http.get<any>(this.apiPath).map(data => {
+      const leaders =
+        data.map((user, i) => {
+          return {
+            no: i + 1,
+            userName: user.userName,
+            progress: user.progress,
+            itemsFound: user.markers.length
+          };
+        });
+      return leaders;
+    });
   }
 
 }
