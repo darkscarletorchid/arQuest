@@ -9,15 +9,17 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  isAuth : boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
    ngOnInit() {
-  //   let isAuth  = this.authService.isAuth;
-  //   if (isAuth) {
-  //     this.router.navigate(['/register']);
-  //   } else {
-  //     this.router.navigate(['/quest']);
-  //   }  
+    this.isAuth = this.authService.isAuth();
+    if (this.isAuth) {
+      this.router.navigate(['/register']);
+    }
+    else {
+      this.router.navigate(['/quest']);
+    }
    }
 }

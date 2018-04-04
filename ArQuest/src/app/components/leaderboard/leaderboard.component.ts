@@ -12,34 +12,31 @@ import { LeaderboardService } from '../../services/leaderboard.service'
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-  
+
   leaders: LeaderboardItem[] = [];
   interval = 60000 * 5; //5 min
   displayedColumns = ['no', 'userName', 'itemsFound', 'progress'];
   lastUpdated: Date;
-  
+
   constructor(private leaderboardService: LeaderboardService) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.lastUpdated = new Date();
 
     TimerObservable.create(0, this.interval).subscribe(() => {
-      this.leaderboardService.getTopUser().subscribe(
-        data => {
-          console.log(data);
-          this.leaders = data;
-        },
-        error => {
-          console.log("error occured");
-        })
+      this.getLeaderboard();
+      this.lastUpdated = new Date(Date.now());
+    });
+  }
 
-        this.lastUpdated = new Date(Date.now());
+  private getLeaderboard() {
+    this.leaderboardService.getTopUser().subscribe(
+      data => {
+        console.log(data);
+        this.leaders = data;
+      },
+      error => {
+        console.log(error);
       });
-
   }
-
-  private getLeaderboard(): LeaderboardItem[] {
-    return new Array<LeaderboardItem>();
-  }
-
 }
