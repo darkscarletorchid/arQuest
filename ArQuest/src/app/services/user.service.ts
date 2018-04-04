@@ -27,7 +27,7 @@ export class UserService {
     return this.http.post<any>(this.apiPath, userData)
       .map(data => {
         if (data && data.token) {
-          localStorage.setItem('token', data);
+          localStorage.setItem('token', data.token);
           user.id = data.id;
           localStorage.setItem('currentUser', JSON.stringify(user));
         }

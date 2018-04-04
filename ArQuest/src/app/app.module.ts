@@ -51,6 +51,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
 
 // Services
+import { CanActivateAuthGuard } from './services/canActivateAuthGuard.service';
 import { AuthService } from './services/auth.service';
 import { ProgressService } from './services/progress.service';
 import { UserService } from './services/user.service';
@@ -58,7 +59,7 @@ import { LeaderboardService } from './services/leaderboard.service';
 
 const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'quest', component: CameraArComponent },
+  { path: 'quest', component: CameraArComponent, canActivate: [CanActivateAuthGuard] },
   { path: 'leaderboard', component: LeaderboardComponent },
 ];
 
@@ -153,7 +154,8 @@ const appRoutes: Routes = [
     AuthService,
     ProgressService,
     UserService,
-    LeaderboardService
+    LeaderboardService,
+    CanActivateAuthGuard
   ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]

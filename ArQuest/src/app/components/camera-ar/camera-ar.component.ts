@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Item, UserItem} from '../../models/item';
+import {UserItem} from '../../models/item';
 import {ProgressService} from '../../services/progress.service';
 import {UserService} from '../../services/user.service';
 import {User, UserDto} from '../../models/user';
@@ -16,36 +16,38 @@ export class CameraArComponent implements OnInit {
 
   user: User;
   userItem: UserItem;
-  itemsFound: Item[];
+  itemsFound: string[];
   actualCount: number;
+  progress:string;
 
   constructor(private progressService: ProgressService, private userService: UserService, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
      this.user = this.userService.getCurrentUser();
-     this.progressService.getProgressByUser(this.user.id);
-     this.actualCount = this.itemsFound.length;
-
+     this.getProgressByUser(this.user.id);
   }
   @HostListener('markerFound', ['$event.target'])
   onMarkerFound(target) {
     this.userItem.itemId = target.id;
     this.userItem.userToken = this.userService.getCurrentUserToken();
-    this.snackBar.open(target.id + ' found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
 
     console.log(target.id);
     this.progressService.addToProgress(this.userItem)
        .subscribe(result => this.progressService.getProgressByUser(this.user.id)
-         .subscribe(items => {
-           this.itemsFound = items;
-           //this.actualCount = items.length;
-           this.actualCount = 0;
+         .subscribe(data => {
+           this.itemsFound = data.markers;
+           this.actualCount = data.markers.length;
+           this.progress = data.progress;
            this.snackBar.open('New object found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
 
     }));
   }
   getProgressByUser(id: number): void {
     this.progressService.getProgressByUser(id)
-      .subscribe(items => this.itemsFound = items, error => {});
+      .subscribe(data => {
+        console.log(data);
+        this.itemsFound = data.markers;
+        this.actualCount = data.markers.length;
+      }, error => {});
   }
 }
