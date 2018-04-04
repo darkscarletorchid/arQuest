@@ -8,3 +8,8 @@ export class User {
     Object.assign(this, init);
   } 
 }
+
+export class UserDto {
+  id: number;
+  token: string;
+}

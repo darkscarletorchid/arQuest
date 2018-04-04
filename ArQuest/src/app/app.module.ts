@@ -51,15 +51,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
 
 // Services
+import { CanActivateAuthGuard } from './services/canActivateAuthGuard.service';
 import { AuthService } from './services/auth.service';
 import { ProgressService } from './services/progress.service';
-import { ItemService } from './services/item.service';
 import { UserService } from './services/user.service';
 import { LeaderboardService } from './services/leaderboard.service';
 
 const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'quest', component: CameraArComponent },
+  { path: 'quest', component: CameraArComponent, canActivate: [CanActivateAuthGuard] },
   { path: 'leaderboard', component: LeaderboardComponent },
 ];
 
@@ -114,7 +114,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
 
-    //material design modules
+    // material design modules
     MatNativeDateModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -153,9 +153,9 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     ProgressService,
-    ItemService,
     UserService,
-    LeaderboardService
+    LeaderboardService,
+    CanActivateAuthGuard
   ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]

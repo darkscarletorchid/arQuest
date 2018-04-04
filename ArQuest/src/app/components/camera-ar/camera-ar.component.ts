@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Item, UserItem} from '../../models/item';
+import {UserItem} from '../../models/item';
 import {ProgressService} from '../../services/progress.service';
 import {UserService} from '../../services/user.service';
-import {User} from '../../models/user';
+import {User, UserDto} from '../../models/user';
 import {MatSnackBar} from '@angular/material';
 
 
@@ -14,37 +14,40 @@ import {MatSnackBar} from '@angular/material';
 })
 export class CameraArComponent implements OnInit {
 
-  userToken: string;
+  user: User;
   userItem: UserItem;
-  itemsFound: Item[];
+  itemsFound: string[];
   actualCount: number;
+  progress:string;
 
   constructor(private progressService: ProgressService, private userService: UserService, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
-     this.userToken = this.userService.getCurrentUserToken();
-     this.progressService.getProgressByUser(this.userToken);
-     this.actualCount = this.itemsFound.length;
-
+     this.user = this.userService.getCurrentUser();
+     this.getProgressByUser(this.user.id);
   }
   @HostListener('markerFound', ['$event.target'])
   onMarkerFound(target) {
     this.userItem.itemId = target.id;
-    this.userItem.userToken = this.userToken;
-    this.snackBar.open(target.id + ' found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
+    this.userItem.userToken = this.userService.getCurrentUserToken();
 
     console.log(target.id);
     this.progressService.addToProgress(this.userItem)
-       .subscribe(result => this.progressService.getProgressByUser(this.userToken)
-         .subscribe(items => {
-           this.itemsFound = items;
-           this.actualCount = items.length;
+       .subscribe(result => this.progressService.getProgressByUser(this.user.id)
+         .subscribe(data => {
+           this.itemsFound = data.markers;
+           this.actualCount = data.markers.length;
+           this.progress = data.progress;
            this.snackBar.open('New object found!', '', { duration: 3000, panelClass: 'custom-snackbar' });
 
     }));
   }
-  getProgressByUser(token: string): void {
-    this.progressService.getProgressByUser(token)
-      .subscribe(items => this.itemsFound = items, error => {});
+  getProgressByUser(id: number): void {
+    this.progressService.getProgressByUser(id)
+      .subscribe(data => {
+        console.log(data);
+        this.itemsFound = data.markers;
+        this.actualCount = data.markers.length;
+      }, error => {});
   }
 }

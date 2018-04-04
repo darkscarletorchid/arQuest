@@ -14,20 +14,20 @@ export class UserService {
   private apiPath: string = environment.apiEndpoint + '/user';
 
   getCurrentUserToken(): string {
-    return localStorage.getItem('token');      
+    return localStorage.getItem('token');
   }
 
-  getCurrentUser() : User {
+  getCurrentUser(): User {
     return JSON.parse(localStorage.getItem('currentUser'));
   }
 
   create(user: User) {
-    let userData = { firstname: user.firstName, lastName: user.lastName, email: user.email };
+    const userData = { firstname: user.firstName, lastName: user.lastName, email: user.email };
 
     return this.http.post<any>(this.apiPath, userData)
       .map(data => {
         if (data && data.token) {
-          localStorage.setItem('token', data);          
+          localStorage.setItem('token', data.token);
           user.id = data.id;
           localStorage.setItem('currentUser', JSON.stringify(user));
         }

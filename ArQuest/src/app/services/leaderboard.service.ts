@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../environments/environment';
-import { LeaderboardItem } from '../models/leaderboard-item'
+import { LeaderboardItem } from '../models/leaderboard-item';
 
 
 @Injectable()
@@ -24,7 +24,6 @@ export class LeaderboardService {
             itemsFound: user.markers.length
           }
         });
-      console.log(leaders);
       return leaders;
     });
   };
