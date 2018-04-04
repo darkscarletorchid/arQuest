@@ -1,28 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Item, UserItem} from '../models/item';
-import {catchError} from 'rxjs/operators';
+import {UserItem, ItemProgress} from '../models/item';
+
+import 'rxjs/add/operator/catch';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    // 'Authorization': 'my-auth-token'
   }) };
-
 @Injectable()
 export class ProgressService {
 
-  constructor(private httpClient: HttpClient) { }
+  baseUrl: string;
 
-  public getProgressByUser (id: number): Observable<any> {
-    return this.httpClient.get('http://' + id);
+  constructor(private httpClient: HttpClient) {
   }
 
-  public addToProgress(userItem: UserItem): Observable<any> {
-    return this.httpClient.post<UserItem>('http://', userItem, httpOptions);
-    // error handling .pipe(
-    // catchError(this.handleError('addHero', hero))
-  // );
+  public getProgressByUser (id: number): Observable<ItemProgress> {
+    return this.httpClient.get<ItemProgress>(environment.apiEndpoint + '/user/' + id).map(data => {
+        console.log(data);
+        return data;
+    });
+  }
+
+  public addToProgress(userItem: UserItem): Observable<UserItem> {
+    return this.httpClient.post<UserItem>(environment.apiEndpoint + '/markers', userItem, httpOptions);
   }
 }

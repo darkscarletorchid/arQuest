@@ -45,29 +45,27 @@ import {
 
 // Custom Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { CameraArComponent } from './camera-ar/camera-ar.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
-import { HeaderComponent } from './camera-ar/header/header.component';
-import { RegisterComponent } from './register/register.component';
+import { CameraArComponent } from './components/camera-ar/camera-ar.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { HeaderComponent } from './components/header/header.component';
+import { RegisterComponent } from './components/register/register.component';
 
 // Services
-import {ProgressService} from './services/progress.service';
-import {ItemService} from './services/item.service';
-import {UserService} from './services/user.service';
-
+import { CanActivateAuthGuard } from './services/canActivateAuthGuard.service';
+import { AuthService } from './services/auth.service';
+import { ProgressService } from './services/progress.service';
+import { UserService } from './services/user.service';
+import { LeaderboardService } from './services/leaderboard.service';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'quest', component: CameraArComponent },
+  { path: 'quest', component: CameraArComponent, canActivate: [CanActivateAuthGuard] },
   { path: 'leaderboard', component: LeaderboardComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     CameraArComponent,
     LeaderboardComponent,
     HeaderComponent,
@@ -116,7 +114,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
 
-    //material design modules
+    // material design modules
     MatNativeDateModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -153,9 +151,11 @@ const appRoutes: Routes = [
 
   ],
   providers: [
+    AuthService,
     ProgressService,
-    ItemService,
-    UserService
+    UserService,
+    LeaderboardService,
+    CanActivateAuthGuard
   ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]

@@ -1,8 +1,9 @@
-export class Item {
-  itemId: string;
+export class ItemProgress {
+  markers: string[];
+  progress: string;
 }
 
 export class UserItem {
-  userId: number;
+  userToken: string;
   itemId: string;
 }
